@@ -8,6 +8,10 @@ namespace PCApp.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult CardsIndex()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             return View();
