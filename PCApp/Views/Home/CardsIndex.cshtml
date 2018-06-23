@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PCApp.Models.Card>
+
+@{
+    ViewBag.Title = "CardsIndex";
+}
+
+<h2>CardsIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Set)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deck)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Set)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deck)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageURL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CardID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CardID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CardID })
+        </td>
+    </tr>
+}
+
+</table>
