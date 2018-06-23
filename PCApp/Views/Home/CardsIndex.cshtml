@@ -43,8 +43,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Deck)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageURL)
+        <td>            
+            <img src="..\@Url.Content(item.ImageURL)" alt="image" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CardID }) |
