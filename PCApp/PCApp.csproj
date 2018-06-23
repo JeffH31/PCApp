@@ -46,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -152,6 +160,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PCDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +168,92 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\eloren-wilds.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\feeding-grounds.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\immersturm.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\isle-of-vesuva.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\llanowar.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\murasa.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\naya.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\the-great-forest.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\turri-island.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ElementalThunder\velis-vel.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\bant.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\goldmeadow.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\krosa.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\minamo.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\panopticon.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\sanctum-of-serra.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\the-eon-fog.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\the-hippodrome.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\the-maelstrom.jpg" />
+    <Content Include="Content\PlanechasePics\2009\MetallicDreams\undercity-reaches.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\academy-at-tolaria-west.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\agyrem.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\glimmervoid-basin.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\izzet-steam-maze.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\naar-isle.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\otaria.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\shiv.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\skybreen.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\sokenzan.jpg" />
+    <Content Include="Content\PlanechasePics\2009\StrikeForce\stronghold-furnace.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\cliffside-market.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\fields-of-summer.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\grixis.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\lethe-lake.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\pools-of-becoming.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\ravens-run.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\sea-of-sand.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\the-aether-flues.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\the-dark-barony.jpg" />
+    <Content Include="Content\PlanechasePics\2009\ZombieEmpire\the-fourth-sphere.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\grand-ossuary.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\hedron-fields-of-agadeem.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\mount-keralia.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\mutual-epiphany.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\nephalia.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\orzhova.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\time-distortion.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\trail-of-the-mage-rings.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\truga-jungle.jpg" />
+    <Content Include="Content\PlanechasePics\2012\ChaosReigns\windriddle-palaces.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\bloodhill-bastion.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\gavony.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\glen-elendra.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\interplanar-tunnel.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\kharasha-foothills.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\morphic-tide.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\norns-dominion.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\quicksilver-sea.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\takenuma.jpg" />
+    <Content Include="Content\PlanechasePics\2012\NightoftheNinja\the-zephyr-maze.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\furnace-layer.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\jund.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\kilnspire-district.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\lair-of-the-ashen-idol.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\orochi-colony.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\prahv.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\reality-shaping.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\selesnya-loft-gardens.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\spatial-merging.jpg" />
+    <Content Include="Content\PlanechasePics\2012\PrimordialHunger\stensia.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\akoum.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\aretopolis.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\astral-arena.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\chaotic-aether.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\edge-of-malacol.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\grove-of-the-dreampods.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\kessig.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\onakke-catacomb.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\planewide-disaster.jpg" />
+    <Content Include="Content\PlanechasePics\2012\SavageAuras\talon-gates.jpg" />
+    <Content Include="Content\PlanechasePics\PlanechaseAnthology\celestine-reef.jpg" />
+    <Content Include="Content\PlanechasePics\PlanechaseAnthology\horizon-boughs.jpg" />
+    <Content Include="Content\PlanechasePics\PlanechaseAnthology\mirrored-depths.jpg" />
+    <Content Include="Content\PlanechasePics\PlanechaseAnthology\stairs-to-infinity.jpg" />
+    <Content Include="Content\PlanechasePics\PlanechaseAnthology\tazeem.jpg" />
+    <Content Include="Content\PlanechasePics\PlanechaseAnthology\tember-city.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -196,7 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
