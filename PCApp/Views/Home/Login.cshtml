@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<div>
+    @Html.ActionLink("Sign Up", "CreateUser", "Home")
+</div>
+<form method="post" action="/Home/Login">
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="text" name="UserName" />
+            <input type="text" name="Password" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Login" />
+        </div>
+    </div>
+</form>
+

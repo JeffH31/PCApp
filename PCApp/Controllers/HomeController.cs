@@ -15,18 +15,82 @@ namespace PCApp.Controllers
         {
             return View(db.Cards.ToList());
         }
+
+        [HttpGet]
+        public ActionResult CreateUser()
+        {
+            return View("CreateUser");
+        }
+
+        [HttpPost]
+        public ActionResult CreateUser(string username, string password)
+        {
+            var user = db.Users.FirstOrDefault(usr => usr.UserName == username);
+
+            if(ModelState.IsValid)
+            {
+                if (user == null)
+                {
+                    db.Users.Add(new User
+                    {
+                        UserName = username,
+                        Password = password
+                    });
+                    db.SaveChanges();
+                }
+                else
+                {
+                    //this username already exists
+                }
+            }
+            return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
+        [HttpPost]
+        public ActionResult Login(string UserName, string Password)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.Users.FirstOrDefault(usr => usr.Password == Password && usr.UserName == UserName);
+                if (user is null)
+                {
+                    //Do an alert
+                }
+                if (user.UserName == UserName && user.Password == Password)
+                {
+                    //success! Move to account screen
+                    return RedirectToAction("UserProfile", user);
+                }
+                else
+                {
+                    //credentials match not found
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UserProfile(User usr)
+        {
+            return RedirectToAction("UserProfile", usr);
+        }
+
         public ActionResult Index()
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
