@@ -43,7 +43,7 @@ namespace PCApp.Controllers
                     //this username already exists
                 }
             }
-            return View("Index");
+            return View("Index");//User Profile
         }
 
         [HttpGet]
@@ -65,20 +65,21 @@ namespace PCApp.Controllers
                 if (user.UserName == UserName && user.Password == Password)
                 {
                     //success! Move to account screen
-                    return RedirectToAction("UserProfile", user);
+                    return RedirectToAction("UserProfile", "Home", user.UserID);
                 }
                 else
                 {
                     //credentials match not found
                 }
             }
-            return RedirectToAction("Index");
+            return View("Index");
         }
 
-        [HttpPost]
-        public ActionResult UserProfile(User usr)
+        [HttpGet]
+        public ActionResult UserProfile(int userID)
         {
-            return RedirectToAction("UserProfile", usr);
+            User user = db.Users.FirstOrDefault(usr => usr.UserID == userID);
+            return View(user);
         }
 
         public ActionResult Index()
