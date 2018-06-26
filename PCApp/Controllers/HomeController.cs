@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCApp.Models;
+using System.Data.Entity;
 
 namespace PCApp.Controllers
 {
@@ -65,7 +66,8 @@ namespace PCApp.Controllers
                 if (user.UserName == UserName && user.Password == Password)
                 {
                     //success! Move to account screen
-                    return RedirectToAction("UserProfile", "Home", user.UserID);
+                    TempData["ID"] = user.UserID;
+                    return RedirectToAction("UserProfile");
                 }
                 else
                 {
@@ -76,10 +78,38 @@ namespace PCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult UserProfile(int userID)
+        public ActionResult UserProfile()
         {
-            User user = db.Users.FirstOrDefault(usr => usr.UserID == userID);
-            return View(user);
+            int ID = Convert.ToInt32(TempData["ID"]);
+            if (ID > 0)
+            {
+                User user = db.Users
+                        .Where(u => u.UserID == ID)
+                        .Include(u => u.Decks)
+                        .FirstOrDefault();
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult DeckDetails(int ID)
+        {
+            if (ID > 0)
+            {
+                Deck deck = db.Decks
+                        .Where(d => d.DeckID == ID)
+                        .Include(d => d.Assignments.Select(a => a.Card))
+                        .FirstOrDefault();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            return View(deck);
         }
 
         public ActionResult Index()

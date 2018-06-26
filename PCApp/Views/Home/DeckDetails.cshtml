@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PCApp.Models.Deck>
+
+@{
+    ViewBag.Title = "DeckDetails";
+}
+
+<h2>DeckDetails</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeckName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeckName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DeckID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DeckID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DeckID })
+        </td>
+    </tr>
+}
+
+</table>

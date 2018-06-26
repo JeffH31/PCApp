@@ -28,6 +28,19 @@
 
     </dl>
 </div>
+<div>
+    <table>
+        @foreach (var item in Model.Decks)
+        {
+            <tr>
+                <td>
+                    @item.DeckName
+                    @Html.ActionLink(item.DeckName,"DeckDetails", new { id = item.DeckID })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
     @Html.ActionLink("Back to List", "Index")
