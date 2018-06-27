@@ -1,10 +1,10 @@
-﻿@model IEnumerable<PCApp.Models.Deck>
+﻿@model IEnumerable<PCApp.Models.Assignment>
 
 @{
-    ViewBag.Title = "DeckDetails";
+    ViewBag.Title = "DeckContainer";
 }
 
-<h2>DeckDetails</h2>
+<h2>DeckContainer</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            @Html.DisplayNameFor(model => model.Card.CardName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeckName)
+            Card Image
         </th>
         <th></th>
     </tr>
@@ -23,15 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
+            @Html.DisplayFor(modelItem => item.Card.CardName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DeckName)
+            <img src="..\..\@Url.Content(item.Card.ImageURL)" alt="Image" />
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DeckID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DeckID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DeckID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssignmentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AssignmentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AssignmentID })
         </td>
     </tr>
 }

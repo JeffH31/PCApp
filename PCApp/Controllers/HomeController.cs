@@ -12,6 +12,11 @@ namespace PCApp.Controllers
     {
         private PCDBContext db = new PCDBContext();
 
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+        }
+
         public ActionResult CardsIndex()
         {
             return View(db.Cards.ToList());
@@ -86,7 +91,7 @@ namespace PCApp.Controllers
                 User user = db.Users
                         .Where(u => u.UserID == ID)
                         .Include(u => u.Decks)
-                        .FirstOrDefault();
+                        .SingleOrDefault();
                 return View(user);
             }
             else
@@ -98,18 +103,12 @@ namespace PCApp.Controllers
         [HttpGet]
         public ActionResult DeckDetails(int ID)
         {
-            if (ID > 0)
-            {
-                Deck deck = db.Decks
-                        .Where(d => d.DeckID == ID)
-                        .Include(d => d.Assignments.Select(a => a.Card))
-                        .FirstOrDefault();
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-            return View(deck);
+            IQueryable<Assignment> assignments = db.Assignments
+                .Where(a => a.DeckID == ID)
+                .Include(a => a.Card)
+                .Include(a => a.Deck);                
+
+            return View(assignments);
         }
 
         public ActionResult Index()
