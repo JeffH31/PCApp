@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PCApp.Models.Assignment>
+
+@{
+    ViewBag.Title = "PlayDeck";
+}
+
+<h2>Play Deck</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Deck.DeckName)
+        </th>
+    </tr>
+</table>
+<hr />
+<table class="table">
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Card.CardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deck.DeckName)
+        </td>
+    </tr>
+}
+</table>
+<table class="table">
+    <tr>
+        <td>
+            <input type="button" value="Previous" />
+        </td>
+        <td>
+            <input type="button" value="Next" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="button" value="shuffle" />
+        </td>
+    </tr>
+</table>

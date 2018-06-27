@@ -20,13 +20,17 @@
                     @Html.ActionLink(item.DeckName, "DeckDetails", new { id = item.DeckID })
                 </td>
                 <td>                   
-                    <input type="button" value="Delete Deck" 
-                    onclick="location.href='@Url.Action("DeleteDeck", "Home", new { id=item.DeckID })'"/>
+                    @*<input type="button" value="Delete Deck" 
+                    onclick="location.href='@Url.Action("DeleteDeck", "Home", new { id=item.DeckID })'"/>*@
+                    <input type="button" value="Delete Deck"
+                    onclick="@Html.ActionLink("Delete Deck", "DeleteDeck", null, new { id="myLink"})"/>
                 </td>
                 <td>
-                    <input type="button" value="PLAY" />
+                    <input type="button" value="PLAY"
+                    onclick="location.href='@Url.Action("PlayDeck", "Home", new { id=item.DeckID })'"/>
                 </td>
             </tr>
         }
     </table>
 </div>
+<script src="~/JS/MyJavaScript.js"></script>

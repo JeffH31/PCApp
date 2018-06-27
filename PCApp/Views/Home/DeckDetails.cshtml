@@ -29,11 +29,8 @@
             <img src="..\..\@Url.Content(item.Card.ImageURL)" alt="Image" />
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AssignmentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AssignmentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AssignmentID })
+            @Html.ActionLink("Play Deck", "PlayDeck", new { id=item.DeckID }) |
         </td>
     </tr>
 }
-
 </table>

@@ -31,7 +31,7 @@ namespace PCApp.Controllers
         [HttpPost]
         public ActionResult CreateUser(string username, string password)
         {
-            var user = db.Users.FirstOrDefault(usr => usr.UserName == username);
+            User user = db.Users.FirstOrDefault(u => u.UserName == username);
 
             if (ModelState.IsValid)
             {
@@ -41,22 +41,18 @@ namespace PCApp.Controllers
                     {
                         UserName = username,
                         Password = password
-                    });
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        //write e
-                    }
+                    });                    
+                    db.SaveChanges();
+
+                    User newUser = db.Users.FirstOrDefault(u => u.UserName == username);
+                    TempData["ID"] = newUser.UserID;
                 }
                 else
                 {
                     //this username already exists
                 }
-            }
-            return View("Index");//User Profile
+            }            
+            return RedirectToAction("UserProfile");//User Profile
         }
 
         [HttpGet]
@@ -113,7 +109,7 @@ namespace PCApp.Controllers
             IQueryable<Assignment> assignments = db.Assignments
                 .Where(a => a.DeckID == ID)
                 .Include(a => a.Card)
-                .Include(a => a.Deck);                
+                .Include(a => a.Deck);
 
             return View(assignments);
         }
@@ -134,16 +130,20 @@ namespace PCApp.Controllers
                 }
                 db.Decks.Remove(deck);
 
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    //write e
-                }
-                return View("Login");//eventually should take them back to the UserProfile page
+                db.SaveChanges();
+                //take them back to the UserProfile page
             }
+        }
+
+        [HttpGet]
+        public ActionResult PlayDeck(int ID)
+        {
+            IQueryable<Assignment> assignments = db.Assignments
+            .Where(a => a.DeckID == ID)
+            .Include(a => a.Card)
+            .Include(a => a.Deck);
+
+            return View(assignments);
         }
 
         public ActionResult Index()
