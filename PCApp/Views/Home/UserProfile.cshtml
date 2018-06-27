@@ -4,31 +4,14 @@
     ViewBag.Title = "UserProfile";
 }
 
-<h2>UserProfile</h2>
+<h2>User Profile</h2>
 
 <div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-    </dl>
+    <h4>@Html.DisplayFor(model => model.UserName)</h4>
 </div>
+<hr />
 <div>
+    <h4>@Html.DisplayNameFor(model => model.Decks)</h4>
     <table>
         @foreach (var item in Model.Decks)
         {
@@ -36,11 +19,14 @@
                 <td>
                     @Html.ActionLink(item.DeckName, "DeckDetails", new { id = item.DeckID })
                 </td>
+                <td>                   
+                    <input type="button" value="Delete Deck" 
+                    onclick="location.href='@Url.Action("DeleteDeck", "Home", new { id=item.DeckID })'"/>
+                </td>
+                <td>
+                    <input type="button" value="PLAY" />
+                </td>
             </tr>
         }
     </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

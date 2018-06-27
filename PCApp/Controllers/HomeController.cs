@@ -33,7 +33,7 @@ namespace PCApp.Controllers
         {
             var user = db.Users.FirstOrDefault(usr => usr.UserName == username);
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (user == null)
                 {
@@ -42,7 +42,14 @@ namespace PCApp.Controllers
                         UserName = username,
                         Password = password
                     });
-                    db.SaveChanges();
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        //write e
+                    }
                 }
                 else
                 {
@@ -109,6 +116,34 @@ namespace PCApp.Controllers
                 .Include(a => a.Deck);                
 
             return View(assignments);
+        }
+
+        [HttpGet]
+        public void DeleteDeck(int ID)
+        {
+            var deck = db.Decks.FirstOrDefault(d => d.DeckID == ID);
+
+            IQueryable<Assignment> assignments = db.Assignments
+                .Where(a => a.DeckID == ID);
+
+            if (assignments.Count() > 0 && deck != null)
+            {
+                foreach (Assignment assignment in assignments)
+                {
+                    db.Assignments.Remove(assignment);
+                }
+                db.Decks.Remove(deck);
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    //write e
+                }
+                return View("Login");//eventually should take them back to the UserProfile page
+            }
         }
 
         public ActionResult Index()
