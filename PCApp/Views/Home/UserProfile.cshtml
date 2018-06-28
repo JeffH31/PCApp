@@ -12,6 +12,7 @@
 <hr />
 <div>
     <h4>@Html.DisplayNameFor(model => model.Decks)</h4>
+    <h4><input type="button" value="New Deck"/></h4>
     <table>
         @foreach (var item in Model.Decks)
         {
@@ -23,10 +24,10 @@
                     <input type="button" value="Delete Deck" 
                     onclick="location.href='@Url.Action("DeleteDeck", "Home", new { id=item.DeckID })'"/>
                     @*<input type="button" value="Delete Deck"
-                    onclick="@Html.ActionLink("", "DeleteDeck", null, new { id="myLink"})"/>*@
+                    onclick="deleteItem(@item.DeckID);@Html.ActionLink("", "DeleteDeck", null, new { id="myLink"})"/>*@
                 </td>
                 <td>
-                    <input type="button" value="PLAY"
+                    <input type="button" value="Play"
                     onclick="location.href='@Url.Action("PlayDeck", "Home", new { id=item.DeckID })'"/>
                 </td>
             </tr>
