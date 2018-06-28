@@ -94,7 +94,7 @@ namespace PCApp.Controllers
                 User user = db.Users
                         .Where(u => u.UserID == ID)
                         .Include(u => u.Decks)
-                        .SingleOrDefault();
+                        .FirstOrDefault();
                 return View(user);
             }
             else
