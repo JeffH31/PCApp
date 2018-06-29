@@ -12,7 +12,8 @@
 <hr />
 <div>
     <h4>@Html.DisplayNameFor(model => model.Decks)</h4>
-    <h4><input type="button" value="New Deck"/></h4>
+    <h4><input type="button" value="New Deck"
+        onclick="location.href='@Url.Action("NewDeck", "Home")'"/></h4>
     <table>
         @foreach (var item in Model.Decks)
         {
@@ -34,4 +35,19 @@
         }
     </table>
 </div>
-@*<script src="~/JS/MyJavaScript.js"></script>*@
+@*<script src="~/Scripts/MyJavaScript.js"></script>*@
+@*<script>
+    $("#myLink").click(function (e) {
+
+        e.preventDefault();
+        $.ajax({
+
+            url: $(this).attr("href"), // comma here instead of semicolon   
+            success: function () {
+                alert("Value Added");  // or any other indication if you want to show
+            }
+
+        });
+
+    });
+</script>*@

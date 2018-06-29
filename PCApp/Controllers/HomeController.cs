@@ -146,6 +146,12 @@ namespace PCApp.Controllers
             return View(assignments);
         }
 
+        [HttpGet]
+        public ActionResult NewDeck()
+        {
+            return View(db.Cards.ToList());
+        }
+
         public ActionResult Index()
         {
             return View();

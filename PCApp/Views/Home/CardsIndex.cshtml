@@ -44,12 +44,7 @@
             @Html.DisplayFor(modelItem => item.Deck)
         </td>
         <td>            
-            <img src="..\@Url.Content(item.ImageURL)" alt="Image" />
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CardID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CardID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CardID })
+            <img src="..\@Url.Content(item.ImageURL)" alt="Image" class="MyImage" />
         </td>
     </tr>
 }

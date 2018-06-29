@@ -172,6 +172,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MyStyleSheet.css" />
     <Content Include="Content\PlanechasePics\2009\ElementalThunder\eloren-wilds.jpg" />
     <Content Include="Content\PlanechasePics\2009\ElementalThunder\feeding-grounds.jpg" />
     <Content Include="Content\PlanechasePics\2009\ElementalThunder\immersturm.jpg" />
@@ -278,6 +279,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyJavaScript.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -298,6 +300,7 @@
     <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\DeckDetails.cshtml" />
     <Content Include="Views\Home\PlayDeck.cshtml" />
+    <Content Include="Views\Home\NewDeck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
