@@ -1,13 +1,10 @@
-﻿$("#myLink").click(function (e) {
+﻿function myDeleteDBObjectFunction(ID) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/Home/DeleteDeck/" + ID, true);
+    xhttp.send();
+}
 
-    e.preventDefault();
-    $.ajax({
-
-        url: $(this).attr("href"), // comma here instead of semicolon   
-        success: function () {
-            alert("Value Added");  // or any other indication if you want to show
-        }
-
-    });
-
-});
+function myRemoveElementFunction(elementID) {
+    var element = document.getElementById(elementID);
+    element.parentNode.removeChild(element);
+}

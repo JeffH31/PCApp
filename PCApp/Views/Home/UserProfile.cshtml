@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "UserProfile";
+    string sID;
+    int x = 0;
 }
 
 <h2>User Profile</h2>
@@ -17,37 +19,21 @@
     <table>
         @foreach (var item in Model.Decks)
         {
-            <tr>
+            sID = x.ToString();
+            ++x;
+            <tr id="@sID">
                 <td>
                     @Html.ActionLink(item.DeckName, "DeckDetails", new { id = item.DeckID })
                 </td>
-                <td>                   
-                    <input type="button" value="Delete Deck" 
-                    onclick="location.href='@Url.Action("DeleteDeck", "Home", new { id=item.DeckID })'"/>
-                    @*<input type="button" value="Delete Deck"
-                    onclick="deleteItem(@item.DeckID);@Html.ActionLink("", "DeleteDeck", null, new { id="myLink"})"/>*@
+                <td>
+                    @*<input type="button" value="Delete Deck" onclick="myDeleteDBObjectFunction(@item.DeckID); myHideFunction(@sID);"/>*@
+                    <input type="button" value="Delete Deck" onclick="myDeleteDBObjectFunction(@item.DeckID); myRemoveElementFunction(@sID);"/>
                 </td>
                 <td>
-                    <input type="button" value="Play"
-                    onclick="location.href='@Url.Action("PlayDeck", "Home", new { id=item.DeckID })'"/>
+                    <input type="button" value="Play" onclick="location.href='@Url.Action("PlayDeck", "Home", new { id=item.DeckID })'"/>
                 </td>
             </tr>
         }
     </table>
 </div>
-@*<script src="~/Scripts/MyJavaScript.js"></script>*@
-@*<script>
-    $("#myLink").click(function (e) {
-
-        e.preventDefault();
-        $.ajax({
-
-            url: $(this).attr("href"), // comma here instead of semicolon   
-            success: function () {
-                alert("Value Added");  // or any other indication if you want to show
-            }
-
-        });
-
-    });
-</script>*@
+<script src="~/Scripts/MyJavaScript.js"></script>
