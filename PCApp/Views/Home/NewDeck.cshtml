@@ -1,85 +1,102 @@
 ﻿@model IEnumerable<PCApp.Models.Card>
 
 @{
-    ViewBag.Title = "NewDeck";
+    ViewBag.Title = "New Deck";
+    string sID;
+    string name;
 }
 
 <h2>New Deck</h2>
 
-<div class="container">@* Column Headers *@
-    <div class="row">
-        <div class="col-lg-9">
-            <div class="row">
-                <div class="col-lg-3">
-                    <h4>Card Info</h4>
-                </div>
-                <div class="col-lg-9">
-                    <h4>Image</h4>
-                </div>
+<div class="container">
+    @* Column Headers *@
+<div class="row">
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col-lg-3">
+                <h4>Card Info</h4>
+            </div>
+            <div class="col-lg-9">
+                <h4>Image</h4>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <h4>Deck List</h4>
-                    </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <h4>Deck List</h4>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <hr />
-<div class="container">@* Actual Info *@
-    <div class="row">
-        <div class="col-lg-9">
-            <div class="row">
-                <div class="col-lg-3">
-                    @* card info *@
-                    @foreach (var item in Model)
-                    {
-                        <div class="row">
-                            <div class="col-lg-12">
-                                @item.CardName
-                            </div>
+<div class="container">
+    @* Actual Info *@
+<div class="row">
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col-lg-3">
+                @* card info *@
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @item.CardName
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                @item.CardType
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @item.CardType
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                @item.Set
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @item.Set
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                @item.Deck
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @item.Deck
                         </div>
-                    }
-                </div>
-                <div class="col-lg-9">
-                    @* image *@
-                    @foreach (var item in Model)
-                    {
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <img src="..\..\@Url.Content(item.ImageURL)" alt="@item.CardName" class="MyImage" />
-                            </div>
-                        </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="row">
-                <div class="col-lg-12">
-                    @* decklist *@
-                    Deck List
-                </div>
+            <div class="col-lg-9">
+                @* image *@
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input type="image"
+                                   class="MyImage"
+                                   src="..\..\@Url.Content(item.ImageURL)"
+                                   onclick="myChangeElementFunction('@item.CardName');" />
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
+    <div class="col-lg-3">
+        @for (int x = 0; x < 9; ++x)
+        {
+            sID = "DL" + x.ToString();
+            <div class="row">
+                <div id="@sID" class="col-lg-12">
+                    
+                </div>
+            </div>
+        }
+    </div>
 </div>
+</div>
+@*<script src="~/Scripts/MyJavaScript.js"></script>*@
+<script type="text/javascript">
+        function myChangeElementFunction(cardName) {
+            var el=document.getElementById('DL0');
+            el.textContent=cardName;
+        }
+</script>

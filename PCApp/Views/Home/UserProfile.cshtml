@@ -14,8 +14,7 @@
 <hr />
 <div>
     <h4>@Html.DisplayNameFor(model => model.Decks)</h4>
-    <h4><input type="button" value="New Deck"
-        onclick="location.href='@Url.Action("NewDeck", "Home")'"/></h4>
+    <h5><input type="button" value="New Deck" onclick="location.href='@Url.Action("NewDeck", "Home")'"/></h5>
     <table>
         @foreach (var item in Model.Decks)
         {
@@ -25,8 +24,7 @@
                 <td>
                     @Html.ActionLink(item.DeckName, "DeckDetails", new { id = item.DeckID })
                 </td>
-                <td>
-                    @*<input type="button" value="Delete Deck" onclick="myDeleteDBObjectFunction(@item.DeckID); myHideFunction(@sID);"/>*@
+                <td>                   
                     <input type="button" value="Delete Deck" onclick="myDeleteDBObjectFunction(@item.DeckID); myRemoveElementFunction(@sID);"/>
                 </td>
                 <td>
