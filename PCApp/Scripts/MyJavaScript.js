@@ -1,15 +1,36 @@
-﻿function myDeleteDBObjectFunction(ID) {
+﻿function deleteDeck(ID) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "/Home/DeleteDeck/" + ID, true);
     xhttp.send();
 }
 
-function myRemoveElementFunction(elementID) {
-    var element = document.getElementById(elementID);
-    element.parentNode.removeChild(element);
+function removeElement(elementID) {
+    var el = document.getElementById(elementID);
+    el.parentNode.removeChild(element);
 }
 
-function myChangeElementFunction(cardName) {
-    var el = document.getElementById('DL0');
-    el.textContent = cardName;
-} 
+function addToDeckList(cardName) {
+    var el
+    var Id
+    for (i = 0; i < 10; i++) {
+        Id = "DL" + [i];
+        el = document.getElementById(Id);
+        if (el.innerHTML.trim() === "") {
+            el.textContent = cardName;
+            i = 10;
+        }
+    }
+}
+
+function removeText() {
+    var Id
+    var el
+    for (i = 9; i > -1; i--) {
+        Id = "DL" + [i];
+        el = document.getElementById(Id);
+        if (el.innerHTML.trim() != "") {
+            el.textContent = "";
+            i = -1;
+        }
+    }
+}

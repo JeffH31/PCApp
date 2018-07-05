@@ -2,17 +2,30 @@
 @{
     ViewBag.Title = "Login";
 }
-
-<h2>Login</h2>
-<div>
-    @Html.ActionLink("Sign Up", "CreateUser", "Home")
+<div class="container">
+    <div class="row">
+        <div class="col-lg-1">
+            <h2>Login</h2>
+            <h5 class="MyBlock">@Html.ActionLink("Sign Up", "CreateUser", "Home")</h5>
+        </div>
+    </div>
 </div>
 <form method="post" action="/Home/Login">
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="text" name="UserName" />
-            <input type="text" name="Password" />
-            <input type="submit" value="Login" />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                User Name:
+                <input type="text" name="UserName" />
+            </div>
+            <div class="col-lg-3">
+                Password:
+                <input type="text" name="Password" />
+            </div>
+            <div class="col-lg-1">
+                <input type="submit" value="Login" />
+            </div>
+            <div class="col-lg-5">
+            </div>
         </div>
     </div>
 </form>

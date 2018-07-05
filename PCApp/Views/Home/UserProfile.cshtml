@@ -5,9 +5,7 @@
     string sID;
     int x = 0;
 }
-
 <h2>User Profile</h2>
-
 <div>
     <h4>@Html.DisplayFor(model => model.UserName)</h4>
 </div>
@@ -15,23 +13,25 @@
 <div>
     <h4>@Html.DisplayNameFor(model => model.Decks)</h4>
     <h5><input type="button" value="New Deck" onclick="location.href='@Url.Action("NewDeck", "Home")'"/></h5>
-    <table>
+    <div class="container">
         @foreach (var item in Model.Decks)
         {
             sID = x.ToString();
             ++x;
-            <tr id="@sID">
-                <td>
+            <div id="@sID" class="row">
+                <div class="col-lg-2">
                     @Html.ActionLink(item.DeckName, "DeckDetails", new { id = item.DeckID })
-                </td>
-                <td>                   
-                    <input type="button" value="Delete Deck" onclick="myDeleteDBObjectFunction(@item.DeckID); myRemoveElementFunction(@sID);"/>
-                </td>
-                <td>
-                    <input type="button" value="Play" onclick="location.href='@Url.Action("PlayDeck", "Home", new { id=item.DeckID })'"/>
-                </td>
-            </tr>
+                </div>
+                <div class="col-lg-1">
+                    <input type="button" value="Delete Deck" onclick="deleteDeck(@item.DeckID); removeElement(@sID);" />
+                </div>
+                <div class="col-lg-1">
+                    <input type="button" value="Play" onclick="location.href='@Url.Action("PlayDeck", "Home", new { id = item.DeckID })'" />
+                </div>
+                <div class="col-lg-8">
+                </div>
+            </div>
         }
-    </table>
+    </div>
 </div>
 <script src="~/Scripts/MyJavaScript.js"></script>

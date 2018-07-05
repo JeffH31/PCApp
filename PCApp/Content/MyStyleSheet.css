@@ -1,4 +1,8 @@
 ﻿.MyImage {
-    max-height: 50%;
-    max-width: 50%;
+    max-height: 75%;
+    max-width: 75%;
+}
+
+.MyBlock {
+    display: inline-block;
 }
