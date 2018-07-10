@@ -9,10 +9,13 @@
 <h2>Play</h2>
 
 <table class="table">
-    <tr>
+    <tr>        
         <th>
             @Html.DisplayNameFor(model => model.Deck.DeckName)
         </th>
+        <td>
+            <input type="button" value="Back" onclick="location.href='@Url.Action("UserProfile", "Home")'" />
+        </td>
     </tr>
 </table>
 <hr />

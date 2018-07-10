@@ -19,7 +19,8 @@ namespace PCApp.Controllers
 
         public ActionResult CardsIndex()
         {
-            return View(db.Cards.ToList());
+            IQueryable<Card> cards = db.Cards;
+            return View(cards);
         }
 
         [HttpGet]
@@ -55,6 +56,98 @@ namespace PCApp.Controllers
             return RedirectToAction("UserProfile");//User Profile
         }
 
+        [HttpPost]
+        public ActionResult CreateDeck(string DeckName, string[] Cards)
+        {
+            int UserID = (int)(Session["UserID"]);
+            int[] cardIDs = new int[10];
+            string cardName;
+            int newDeckID;
+
+            if (UserID > 0)
+            {
+                //check to see if DeckName is null
+                if (DeckName == "")
+                {
+                    return Json(new { Result = "NO DECK NAME" },
+                        JsonRequestBehavior.AllowGet);
+                }
+
+                //Check to see if DeckName is already being used by User
+                Deck deck = db.Decks
+                    .Where(d => d.DeckName == DeckName)
+                    .FirstOrDefault();
+                if (deck != null)
+                {
+                    return Json(new { Result = "ALREADY USING THIS DECK NAME" },
+                        JsonRequestBehavior.AllowGet);
+                }
+
+                //turn cards Array into List                
+                List<string> cards = Cards.ToList();
+
+                //check to see if there are enough Cards
+                if (cards.Count() < 10)
+                {
+                    return Json(new { Result = "DECK MUST HAVE 10 CARDS" },
+                        JsonRequestBehavior.AllowGet);
+                }
+
+                //change CardNames into CardIDs
+                Card card;
+                for (int i = 0; i < 10; i++)
+                {
+                    cardName = cards[i].ToString();
+                    card = db.Cards
+                        .Where(c => c.CardName == cardName)
+                        .FirstOrDefault();
+                    cardIDs[i] = card.CardID;
+                }
+
+                //Check to see if there are more than 2 phenomenons
+                List<Card> PhenomenonCards;
+                PhenomenonCards = db.Cards
+                    .Where(c => c.CardType == "Phenomenon" 
+                    && (cardIDs.Contains(c.CardID))).ToList();
+
+                if (PhenomenonCards.Count > 2)
+                {
+                    return Json(new { Result = "DECK CAN ONLY HAVE 2 PHENOMENONS" },
+                        JsonRequestBehavior.AllowGet);
+                }
+
+                //Add Deck
+                db.Decks.Add(new Deck
+                {
+                    DeckName = DeckName,
+                    UserID = UserID
+                });
+                db.SaveChanges();
+
+                //get newly created Deck's ID                
+                Deck newDeck = db.Decks
+                    .Where(d => d.UserID == UserID)
+                    .Where(d => d.DeckName == DeckName)
+                    .FirstOrDefault();
+                newDeckID = newDeck.DeckID;
+
+                //Assign Cards to Deck
+                for (int i = 0; i < 10; i++)
+                {
+                    db.Assignments.Add(new Assignment
+                    {
+                        DeckID = newDeckID,
+                        CardID = cardIDs[i]
+                    });
+                    db.SaveChanges();
+                }
+                //Return Success
+                return Json(new { Result = "DECK ADDED", url = Url.Action("UserProfile", "Home")});                
+            }
+            return Json(new { Result = "PLEASE LOG IN/CREATE A PROFILE" },
+                    JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -66,7 +159,7 @@ namespace PCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = db.Users.FirstOrDefault(usr => usr.Password == Password && usr.UserName == UserName);
+                User user = db.Users.FirstOrDefault(usr => usr.Password == Password && usr.UserName == UserName);
                 if (user is null)
                 {
                     //Do an alert
@@ -74,7 +167,7 @@ namespace PCApp.Controllers
                 if (user.UserName == UserName && user.Password == Password)
                 {
                     //success! Move to account screen
-                    TempData["ID"] = user.UserID;
+                    Session["UserID"] = user.UserID;
                     return RedirectToAction("UserProfile");
                 }
                 else
@@ -88,11 +181,11 @@ namespace PCApp.Controllers
         [HttpGet]
         public ActionResult UserProfile()
         {
-            int ID = Convert.ToInt32(TempData["ID"]);
-            if (ID > 0)
+            int UserID = (int)(Session["userID"]);
+            if (UserID > 0)
             {
                 User user = db.Users
-                        .Where(u => u.UserID == ID)
+                        .Where(u => u.UserID == UserID)
                         .Include(u => u.Decks)
                         .FirstOrDefault();
                 return View(user);
@@ -130,8 +223,7 @@ namespace PCApp.Controllers
                 }
                 db.Decks.Remove(deck);
 
-                db.SaveChanges();
-                //take them back to the UserProfile page
+                db.SaveChanges();               
             }
         }
 

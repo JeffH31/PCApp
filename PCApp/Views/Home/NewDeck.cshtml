@@ -12,7 +12,7 @@
         <div class="col-lg-4">
             <h5>Deck Name:</h5>
             <input id="DeckName" class="MyBlock" type="text" />
-            <input id="SubmitDeck"class="MyBlock" type="submit" value="Save Deck" />
+            <input id="SubmitDeck" type="button" class="MyBlock" onclick="sendArray();" value="Save Deck" />
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="col-lg-3">
             <h4>Deck List</h4>
-            <input class="MyBlock" type="button" onclick="removeText();" value="Remove Card From Deck"/>
+            <input class="MyBlock" type="button" onclick="removeText();" value="Remove Card From Deck" />
         </div>
     </div>
 </div>
@@ -68,7 +68,7 @@
             @* DeckList *@
             @for (int x = 0; x < 10; ++x)
             {
-                sID = "DL" + x.ToString();                
+                sID = "DL" + x.ToString();
                 <div id="@sID">
                 </div>
             }
