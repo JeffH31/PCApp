@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using PCApp.Models;
 using System.Data.Entity;
-using PCApp.Helpers;
 
 namespace PCApp.Controllers
 {
@@ -236,9 +235,10 @@ namespace PCApp.Controllers
             .Include(a => a.Card)
             .Include(a => a.Deck);
 
-            assignments.ToList();
+            var assigns = new List<Assignment>(assignments.ToList());
+            assigns.Shuffle();
 
-            return View(assignments);
+            return View(assigns);
         }
 
         [HttpGet]
