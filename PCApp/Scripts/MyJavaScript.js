@@ -82,7 +82,7 @@ function rollDie() {
     var tracker = document.getElementById("Tracker");
     var number = tracker.innerHTML;
     var result = Math.floor(Math.random() * 6);
-    //var sound
+    var sound;
     if (result < 4) {
         //change die face
         die.src = "../../Content/PlanechasePics/Die/white.png";
@@ -94,8 +94,8 @@ function rollDie() {
         die.src = "../../Content/PlanechasePics/Die/chaos.png";
         //pulse image
         //play sound clip
-        //sound = new sound("chaos.mp3");
-        //sound.play()
+        sound = new Audio("../../Content/Audio/chaos.wav");
+        sound.play()
         //increase tracker
         number++;
         tracker.innerHTML = number;
@@ -104,8 +104,8 @@ function rollDie() {
         die.src = "../../Content/PlanechasePics/Die/planeswalker.png";
         //pulse image
         //play sound clip
-        //sound = new sound("chaos.mp3");
-        //sound.play()
+        sound = new Audio("../../Content/Audio/planeswalk.mp3");
+        sound.play()
         //increase tracker
         number++;
         tracker.innerHTML = number;
