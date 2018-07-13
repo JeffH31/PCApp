@@ -253,6 +253,9 @@
     <Content Include="Content\PlanechasePics\2012\SavageAuras\onakke-catacomb.jpg" />
     <Content Include="Content\PlanechasePics\2012\SavageAuras\planewide-disaster.jpg" />
     <Content Include="Content\PlanechasePics\2012\SavageAuras\talon-gates.jpg" />
+    <Content Include="Content\PlanechasePics\Die\chaos.png" />
+    <Content Include="Content\PlanechasePics\Die\planeswalker.png" />
+    <Content Include="Content\PlanechasePics\Die\white.png" />
     <Content Include="Content\PlanechasePics\PlanechaseAnthology\celestine-reef.jpg" />
     <Content Include="Content\PlanechasePics\PlanechaseAnthology\horizon-boughs.jpg" />
     <Content Include="Content\PlanechasePics\PlanechaseAnthology\mirrored-depths.jpg" />

@@ -6,3 +6,8 @@
 .MyBlock {
     display: inline-block;
 }
+
+#Die {
+    height: 150px;
+    width: 150px;
+}

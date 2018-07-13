@@ -11,7 +11,7 @@ function removeElement(elementID) {
 
 function addToDeckList(cardName) {
     var el;
-    var Id    
+    var Id;    
     for (i = 0; i < 10; i++) {
         Id = "DL" + [i];        
         el = document.getElementById(Id);
@@ -31,8 +31,8 @@ function addToDeckList(cardName) {
 }
 
 function removeText() {
-    var Id
-    var el
+    var Id;
+    var el;
     for (i = 9; i > -1; i--) {
         Id = "DL" + [i];
         el = document.getElementById(Id);
@@ -47,11 +47,11 @@ function removeText() {
 }
 
 function sendArray() {
-    var Id
+    var Id;
     var stringArray = new Array();
     //fill array with CardNames
     for (i = 0; i < 10; i++) {
-        Id = "DL" + [i]
+        Id = "DL" + [i];
         stringArray[i] = document.getElementById(Id).textContent.trim();
     }    
     //Add DeckName to array
@@ -73,6 +73,46 @@ function sendArray() {
             if (data.Result === "DECK ADDED") {
                 window.location = data.url;
             }
-        },
+        }
     });
+}
+
+function rollDie() {
+    var die = document.getElementById("Die");
+    var tracker = document.getElementById("Tracker");
+    var number = tracker.innerHTML;
+    var result = Math.floor(Math.random() * 6);
+    //var sound
+    if (result < 4) {
+        //change die face
+        die.src = "../../Content/PlanechasePics/Die/white.png";
+        //increase tracker
+        number++;
+        tracker.innerHTML = number;
+    } else if (result === 4) {
+        //change die face
+        die.src = "../../Content/PlanechasePics/Die/chaos.png";
+        //pulse image
+        //play sound clip
+        //sound = new sound("chaos.mp3");
+        //sound.play()
+        //increase tracker
+        number++;
+        tracker.innerHTML = number;
+    } else {
+        //change die face
+        die.src = "../../Content/PlanechasePics/Die/planeswalker.png";
+        //pulse image
+        //play sound clip
+        //sound = new sound("chaos.mp3");
+        //sound.play()
+        //increase tracker
+        number++;
+        tracker.innerHTML = number;
+    }
+}
+
+function resetTracker() {
+    var tracker = document.getElementById("Tracker");
+    tracker.innerHTML = "0";
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PCApp.Models;
 using System.Data.Entity;
+using PCApp.Helpers;
 
 namespace PCApp.Controllers
 {
@@ -225,7 +226,7 @@ namespace PCApp.Controllers
 
                 db.SaveChanges();               
             }
-        }
+        }        
 
         [HttpGet]
         public ActionResult PlayDeck(int ID)
@@ -234,6 +235,8 @@ namespace PCApp.Controllers
             .Where(a => a.DeckID == ID)
             .Include(a => a.Card)
             .Include(a => a.Deck);
+
+            assignments.ToList();
 
             return View(assignments);
         }

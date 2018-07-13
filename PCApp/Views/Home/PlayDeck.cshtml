@@ -17,6 +17,25 @@
             <input type="button" value="Back" onclick="location.href='@Url.Action("UserProfile", "Home")'" />
         </td>
     </tr>
+    <tr>
+        <td>
+            <input type="button" value="shuffle" />
+        </td>
+        <td>
+            <div class="container">
+                <div>
+                    <img id="Die" />
+                </div>
+                <div id="Tracker">
+                    0
+                </div>
+                <div>
+                    <input type="button" value="Roll" onclick="rollDie();" />
+                    <input type="button" value="Reset" onclick="resetTracker();" />
+                </div>
+            </div>
+        </td>
+    </tr>
 </table>
 <hr />
 <div id="myCarousel" class="carousel slide">
@@ -49,10 +68,3 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<table class="table">
-    <tr>
-        <td>
-            <input type="button" value="shuffle" />
-        </td>
-    </tr>
-</table>
