@@ -33,46 +33,33 @@
     </div>
 </div>
 <hr />
-<div class="container">
+<div class="container col-lg-9">
     @* Actual Info *@
+    @foreach (var item in Model)
+    {
+    <div class="row d-flex flex-column">
+        <div class="col-lg-3" style="float:left" overflow:auto>
+            <p>NAME: @item.CardName</p>
+            <p>TYPE: @item.CardType</p>
+            <p>SET: @item.Set</p>
+            <p>DECK: @item.Deck</p>
+        </div>
+        <div class="col-lg-9">
+        @* image *@
+            <input type="image" class="MyImage" src="..\..\@Url.Content(item.ImageURL)" onclick="addToDeckList('@item.CardName');" />
+        </div>
+    </div>
+    }
+</div>
+<div class="container col-lg-3">
     <div class="row">
-        <div class="col-lg-3">
-            @* card info *@
-            @foreach (var item in Model)
-            {
-                <div class="MyBlock">
-                    @item.CardName
-                </div>
-                <div class="MyBlock">
-                    @item.CardType
-                </div>
-                <div class="MyBlock">
-                    @item.Set
-                </div>
-                <div class="MyBlock">
-                    @item.Deck
-                </div>
-            }
-        </div>
-        <div class="col-lg-6">
-            @* image *@
-            @foreach (var item in Model)
-            {
-                <input type="image"
-                       class="MyImage"
-                       src="..\..\@Url.Content(item.ImageURL)"
-                       onclick="addToDeckList('@item.CardName');" />
-            }
-        </div>
-        <div class="col-lg-3">
-            @* DeckList *@
-            @for (int x = 0; x < 10; ++x)
-            {
-                sID = "DL" + x.ToString();
-                <div id="@sID">
-                </div>
-            }
-        </div>
+        @* DeckList *@
+        @for (int x = 0; x < 10; ++x)
+        {
+            sID = "DL" + x.ToString();
+            <div id="@sID">
+            </div>
+        }
     </div>
 </div>
 <script src="~/Scripts/MyJavaScript.js"></script>

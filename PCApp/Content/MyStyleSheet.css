@@ -11,3 +11,7 @@
     height: 150px;
     width: 150px;
 }
+
+footer {
+    display: block;
+}
