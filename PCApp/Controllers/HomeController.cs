@@ -46,14 +46,14 @@ namespace PCApp.Controllers
                     db.SaveChanges();
 
                     User newUser = db.Users.FirstOrDefault(u => u.UserName == username);
-                    TempData["ID"] = newUser.UserID;
+                    Session["UserID"] = newUser.UserID;
                 }
                 else
                 {
                     //this username already exists
                 }
             }            
-            return RedirectToAction("UserProfile");//User Profile
+            return RedirectToAction("UserProfile");
         }
 
         [HttpPost]
@@ -181,7 +181,7 @@ namespace PCApp.Controllers
         [HttpGet]
         public ActionResult UserProfile()
         {
-            int UserID = (int)(Session["userID"]);
+            int UserID = (int)(Session["UserID"]);
             if (UserID > 0)
             {
                 User user = db.Users
