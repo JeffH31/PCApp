@@ -162,7 +162,7 @@ namespace PCApp.Controllers
                 User user = db.Users.FirstOrDefault(usr => usr.Password == Password && usr.UserName == UserName);
                 if (user is null)
                 {
-                    //Do an alert
+                        return View("Index");
                 }
                 if (user.UserName == UserName && user.Password == Password)
                 {
